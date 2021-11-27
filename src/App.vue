@@ -70,13 +70,13 @@
       <span>거주지역</span>
       <!-- <v-select label="지역 선택" v-model="cityName"> </v-select> -->
       <select class="dropdown-bar-do" v-model="form.city" aria-label="지역 선택">
-        <option disabled selected >지역 선택</option>
+        <option disabled firstActiveValue autoFocus>지역 선택</option>
         <option v-for="i in loadCity" v-bind:key="i" > {{i.cityName}}</option>
 
       </select>
 
       <select class="dropdown-bar-si"  v-model="form.location" v-if="form.city == '서울특별시'">
-        <option  selected disabled>시/군 선택</option>
+        <option allowClear selected defaultActiveFirstOption>시/군 선택</option>
         <option v-for="se in loadSeoul" v-bind:key="se" > {{se.locationName}}</option>
       </select>
 
@@ -167,8 +167,8 @@ export default {
       loadGunggi :[],
       form: {
                 phoneNumber: '',
-                city: '',
-                location: '',
+                city: '지역 선택',
+                location: '시/군 선택',
             }
       }
   },
@@ -247,8 +247,12 @@ input {
   border: none;
   background-color: inherit;
   color: inherit;
+  border-radius: 0;
 }
-a {
+.select-arrow {
+  pointer-events :visible ;
+}
+a { 
   text-decoration: none;
   color: initial;
   margin: 0;
@@ -272,9 +276,11 @@ input:focus {
 * {
   box-sizing: border-box;
   margin: 0 auto;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 body {
   max-width: 100%;
+  background-color: #f7d2d1;
 }
 
 /* 팝업창 */
