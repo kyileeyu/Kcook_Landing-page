@@ -161,7 +161,7 @@ export default {
   data(){
     return{
       city:0,
-      modal: true,
+      modal: false,
       loadCity :[],
       loadSeoul :[],
       loadGunggi :[],
