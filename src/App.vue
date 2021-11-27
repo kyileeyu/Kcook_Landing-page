@@ -70,18 +70,18 @@
       <span>거주지역</span>
       <!-- <v-select label="지역 선택" v-model="cityName"> </v-select> -->
       <select class="dropdown-bar-do" v-model="form.city" aria-label="지역 선택">
-        <option disabled firstActiveValue autoFocus>지역 선택</option>
+        <option disabled hidden >지역 선택</option>
         <option v-for="i in loadCity" v-bind:key="i" > {{i.cityName}}</option>
 
       </select>
 
       <select class="dropdown-bar-si"  v-model="form.location" v-if="form.city == '서울특별시'">
-        <option allowClear selected defaultActiveFirstOption>시/군 선택</option>
+        <option selected hidden >시/군 선택</option>
         <option v-for="se in loadSeoul" v-bind:key="se" > {{se.locationName}}</option>
       </select>
 
       <select class="dropdown-bar-si"  v-model="form.location" v-else-if="form.city == '경기도'">
-        <option  selected disabled>시/군 선택</option>
+        <option  selected hidden >시/군 선택</option>
         <option v-for="gung in loadGunggi" v-bind:key="gung" > {{gung.locationName}}</option>
       </select>
 
@@ -249,9 +249,10 @@ input {
   color: inherit;
   border-radius: 0;
 }
-.select-arrow {
-  pointer-events :visible ;
+option{
+  color : #525252;
 }
+
 a { 
   text-decoration: none;
   color: initial;
@@ -265,6 +266,12 @@ Link {
 select {
   border: none;
   background-color: inherit;
+  -webkit-appearance:none; /* for chrome */
+   -moz-appearance:none; /*for firefox*/
+   appearance:none;
+}
+select::-ms-expand{
+   display:none;/*for IE10,11*/
 }
 select:focus {
   outline: none;
@@ -330,7 +337,7 @@ body {
   width:38px;
   height: 50px;
   margin-right: 2px;
-  padding:14px 5px 5px 6px;
+  padding:10px 5px 5px 6px;
     background-color: rgba(255, 255, 255, 0.84);
     text-align: center;
   border-radius: 16px;
@@ -511,6 +518,10 @@ body {
     height: 36px;
     border: 1px solid #ea5450;
     margin-right: 6px;
+    background-image:url('./assets/arrow.svg');
+    background-repeat: no-repeat;
+    background-position-x: 97%;
+    background-position-y: 50%;
   }
 .get-email-form  :nth-child(2) {
     grid-column: 2 / span 2;
