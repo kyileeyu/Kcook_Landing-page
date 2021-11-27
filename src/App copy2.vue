@@ -278,11 +278,11 @@ body {
   margin-bottom: 8px;
 }
 .end-time-day, .end-time-hours ,.end-time-minutes ,.end-time-seconds{
-  width:70px;
-  padding:10px 10px 5px 15px;
+  width:60px;
+  padding:10px 3px 5px 5px;
     background-color: rgba(255, 255, 255, 0.84);
   border-radius: 16px;
- letter-spacing: 10px;
+ letter-spacing: 2px;
 }
 
 .time-desc{

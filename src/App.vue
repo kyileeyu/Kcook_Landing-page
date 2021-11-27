@@ -6,6 +6,12 @@
         <img src="./assets/search.svg" alt="search" class="search"/>
       </header>
 
+<div class="black-bg" v-if="modal ==true">
+  <div class="white-bg">
+    <p>신청 완료 되었습니다!</p>
+    <button @click="modal = false" class="get-email-btn" >확인</button>
+  </div>
+</div>
 
   <div class="intro">
     <div class="kcook-img">
@@ -18,12 +24,16 @@
     </p>
     <div class="end-time" id="end-time">
       <div class="end-time-day"></div>
+      <div class="end-time-day2"></div>
       <img src="./assets/colon.svg" alt=":" class="colon" />
       <div class="end-time-hours"></div>
+      <div class="end-time-hours2"></div>
       <img src="./assets/colon.svg" alt=":" class="colon" />
       <div class="end-time-minutes"></div>
+      <div class="end-time-minutes2"></div>
       <img src="./assets/colon.svg" alt=":" class="colon" />
       <div class="end-time-seconds"></div>
+      <div class="end-time-seconds2"></div>
     </div>
     <div class="time-desc">
       <p class="time-desc-text">일</p>
@@ -56,7 +66,7 @@
 
     <form class="get-email-form" @submit="checkForm" method="post" id="registerForm" v-on:submit.prevent="submitForm">
         <span>휴대폰번호</span>
-        <input placeholder="0100000000" type="string"  name="phoneNumber"  v-model="form.phoneNumber"/>
+        <input placeholder="0100000000" type="string"  name="phoneNumber"  maxlength="11" v-model="form.phoneNumber"/>
       <span>거주지역</span>
       <!-- <v-select label="지역 선택" v-model="cityName"> </v-select> -->
       <select class="dropdown-bar-do" v-model="form.city" aria-label="지역 선택">
@@ -101,18 +111,18 @@ import axios from 'axios';
 window.onload = function() {
   // const title = document.querySelector(".end-time");
 const titleDay = document.querySelector(".end-time-day");
+const titleDay2 = document.querySelector(".end-time-day2");
 const titleHour = document.querySelector(".end-time-hours");
+const titleHour2 = document.querySelector(".end-time-hours2");
 const titleMin = document.querySelector(".end-time-minutes");
+const titleMin2 = document.querySelector(".end-time-minutes2");
 const titleSec = document.querySelector(".end-time-seconds");
+const titleSec2 = document.querySelector(".end-time-seconds2");
 
 const getDDay = () => {
   const setDate = new Date("2022-01-01T00:00:00+0900");
-  // const setDateYear = setDate.getFullYear();
-  // const setDateMonth = setDate.getMonth() + 1;
-  // const setDateDay = setDate.getDate();
-
+ 
   const now = new Date();
-
   const distance = setDate.getTime() - now.getTime();
 
   const day = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -122,10 +132,14 @@ const getDDay = () => {
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  titleDay.innerText = `${day}`;
-  titleHour.innerText = `${hours < 10 ? `0${hours}`: hours} `;
-  titleMin.innerText = `${minutes < 10 ? `0${minutes}` : minutes}`;
-  titleSec.innerText = `${seconds < 10 ? `0${seconds}` : seconds}`;
+  titleDay.innerText = `${parseInt(day/10)}`;
+  titleDay2.innerText = `${day%10}`;
+  titleHour.innerText = `${hours < 10 ? `0`: parseInt(hours/10)} `;
+  titleHour2.innerText = `${hours%10}`;
+  titleMin.innerText = `${minutes < 10 ? `0` : parseInt(minutes/10)}`;
+  titleMin2.innerText = `${minutes%10}`;
+  titleSec.innerText = `${seconds < 10 ? `0` : parseInt(seconds/10)}`;
+  titleSec2.innerText = `${seconds%10}`;
 };
 
 const init = () => {
@@ -147,6 +161,7 @@ export default {
   data(){
     return{
       city:0,
+      modal: true,
       loadCity :[],
       loadSeoul :[],
       loadGunggi :[],
@@ -171,7 +186,7 @@ export default {
     getSeoul(){
       axios.get(`https://prod.kcook-cake.com/app/locations/1`)
       .then(res =>{
-        console.log(res.data.result);
+        // console.log(res.data.result);
         this.loadSeoul =res.data.result;
           })
       .catch((error) => {
@@ -182,7 +197,7 @@ export default {
     getGunggi(){
       axios.get(`https://prod.kcook-cake.com/app/locations/9`)
       .then(res =>{
-        console.log(res.data.result);
+        // console.log(res.data.result);
         this.loadGunggi =res.data.result;
           })
       .catch((error) => {
@@ -203,6 +218,7 @@ export default {
             .then((res) => {
                 console.log(res.data);
                 console.log('전송성공!');
+                this.modal = true;
             })
             .catch((error) => {
                 console.error(error);
@@ -261,6 +277,29 @@ body {
   max-width: 100%;
 }
 
+/* 팝업창 */
+.black-bg {
+  width: 100%; height:100%;
+  background: rgba(0,0,0,0.5);
+  position: fixed; padding: 20px;
+}
+.white-bg {
+  width: 100%; background: white;
+  border-radius: 8px;
+  margin-top: 40vh;
+  padding: 20px;
+} 
+.white-bg p{
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.white-bg button{
+  margin: 30px auto 0;
+  text-align: center;
+}
+
 
 /* 디데이!!!!!! */
 
@@ -275,14 +314,21 @@ body {
   color: #f96d6d;
 }
 .colon{
-  margin-bottom: 8px;
+  position:relative;
+  right:1px;
+    /* margin-right: 2px; */
+
 }
-.end-time-day, .end-time-hours ,.end-time-minutes ,.end-time-seconds{
-  width:70px;
-  padding:10px 10px 5px 15px;
+.end-time-day, .end-time-hours ,.end-time-minutes ,.end-time-seconds,
+.end-time-day2, .end-time-hours2 ,.end-time-minutes2 ,.end-time-seconds2{
+  width:38px;
+  height: 50px;
+  margin-right: 2px;
+  padding:14px 5px 5px 6px;
     background-color: rgba(255, 255, 255, 0.84);
+    text-align: center;
   border-radius: 16px;
- letter-spacing: 10px;
+ /* letter-spacing: 10px; */
 }
 
 .time-desc{
@@ -296,9 +342,9 @@ body {
 }
 
 .time-desc-text{
-  width:78px;
+  width:87px;
   text-align: right;
-  padding-right: 5px;
+  padding-right: 6px;
   /* margin: 0 1px 0s 29px; */
 
 }
