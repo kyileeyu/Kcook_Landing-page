@@ -216,8 +216,8 @@ export default {
     submitForm(){
       axios.post('https://prod.kcook-cake.com/app/applicants', this.form)
             .then((res) => {
-                console.log(res.data);
-                console.log('전송성공!');
+                // console.log(res.data);
+                // console.log('전송성공!');
                 this.modal = true;
             })
             .catch((error) => {
