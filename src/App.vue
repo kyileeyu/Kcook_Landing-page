@@ -2,7 +2,7 @@
 <div class="landing-page">
       <header class="landing-header">
         <img src="./assets/icon-menu.svg" alt="menu" class="menu" />
-        <img src="./assets/logo.webp" alt="logo" class="logo"/>
+        <img src="./assets/logo.png" alt="logo" class="logo"/>
         <img src="./assets/search.svg" alt="search" class="search"/>
       </header>
 
@@ -15,7 +15,7 @@
 
   <div class="intro">
     <div class="kcook-img">
-      <img src="./assets/intro-kcook.webp" alt="kcook-logo" class="kcook-logo" />
+      <img src="./assets/intro-kcook.png" alt="kcook-logo" class="kcook-logo" />
     </div>
     <p class="intro-span">
       <span>쉽게! 간편하게!</span>
@@ -53,7 +53,7 @@
     </p>
     <p class="title-desc">출시 알림 신청하고, 랜덤 쿠폰 받자!</p>
     <div class="coupon-img">
-      <img src="./assets/coupon.webp" class="kcook-coupon" alt="kcook-coupon" />
+      <img src="./assets/coupon.png" class="kcook-coupon" alt="kcook-coupon" />
     </div>
     <span class="intro-footer">
       *이벤트 및 베타 서비스 일정은 내부 사정 등에 의해 변경될 수 있습니다.
