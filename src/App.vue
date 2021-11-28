@@ -105,7 +105,10 @@
 
 <script>
 import axios from 'axios';
-// import func from 'vue-editor-bridge';
+// import Vue from 'vue' ;
+// import VueMoment from 'vue-moment';
+// Vue.use(vueMoment);
+
 
 // 디데이
 window.onload = function() {
@@ -120,11 +123,29 @@ const titleSec = document.querySelector(".end-time-seconds");
 const titleSec2 = document.querySelector(".end-time-seconds2");
 
 const getDDay = () => {
-  const setDate = new Date("2022-01-01T00:00:00+0900");
- 
+  // let setDate = new Date("2022-01-01T00:00:00+0900");
+  let setDate = new Date(2022, 0, 1, 0, 0, 0, 0);
+  // 사파리 및 IE에서는 date 함수에 - 사용 불가, nan 오류 발생, 삽질끝에 date함수 형식 바꿔 해결
+  // console.log(setDate);
+
+  // 삽질1
+  // let setDate = this.moment().format('2013-02-08 2400.000');
+//  new Date(+new Date() + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, '');
+
+// 삽질2
+//  const date = new Date(+new Date('2022-01-01T00:00:00+0900') + 3240 * 10000).toISOString().split("T")[0]
+// const time = new Date().toTimeString().split(" ")[0];
+// console.log(date + ' ' + time);
+// const setDate = date + ' ' + time;
+
+// 삽질3
+// const Date = new Date(Date.UTC("January 01, 2022"));
+// console.log(Date);
+
   const now = new Date();
   const distance = setDate.getTime() - now.getTime();
 
+  // let setDate = new Date(2022,1,1,0,0,0);
   const day = Math.floor(distance / (1000 * 60 * 60 * 24));
   const hours = Math.floor(
     (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -156,6 +177,7 @@ const init = () => {
 
 export default {
   name: 'App',
+  
   components: {
   },
   data(){
@@ -234,6 +256,8 @@ export default {
     // this.whereCity(),
     this.getSeoul(),
     this.getGunggi()
+    // this.use(VueMoment)
+
   },
 
 }
@@ -269,6 +293,7 @@ select {
   -webkit-appearance:none; /* for chrome */
    -moz-appearance:none; /*for firefox*/
    appearance:none;
+   color : #525252;
 }
 select::-ms-expand{
    display:none;/*for IE10,11*/
@@ -507,13 +532,13 @@ body {
     font-weight: 500;
   }
 .get-email-form  input {
-   padding-left: 10px;
+   padding-left: 12px;
     height: 36px;
     width: 100%;
     border: 1px solid #ea5450;
   }
 .get-email-form  select {
-  padding-left: 8px;
+  padding-left: 12px;
     width: 100%;
     height: 36px;
     border: 1px solid #ea5450;
