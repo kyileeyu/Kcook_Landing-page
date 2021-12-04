@@ -173,6 +173,12 @@ const init = () => {
 
 // axios
       
+axios.patch('https://prod.kcook-cake.com/app/openBeta/visit')
+.then(res=>{
+console.log('조회'+res)})
+.catch((error)=>{
+  console.log(error)
+});
 
 
 export default {
