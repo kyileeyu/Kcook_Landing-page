@@ -124,7 +124,7 @@ const titleSec2 = document.querySelector(".end-time-seconds2");
 
 const getDDay = () => {
   // let setDate = new Date("2022-01-01T00:00:00+0900");
-  let setDate = new Date(2022, 0, 1, 0, 0, 0, 0);
+  let setDate = new Date(2022, 1, 11, 0, 0, 0, 0);
   // 사파리 및 IE에서는 date 함수에 - 사용 불가, nan 오류 발생, 삽질끝에 date함수 형식 바꿔 해결
   // console.log(setDate);
 
