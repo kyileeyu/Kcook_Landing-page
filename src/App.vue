@@ -253,7 +253,17 @@ export default {
                 console.log(this.form);
             })
             ;
-        }
+        },
+    checkVisit(){
+      axios.patch('https://prod.kcook-cake.com/app/openBeta/visit')
+      .then(res=>{
+      console.log(res);
+      })
+      .catch((error)=>{
+        console.log(error)
+      });
+
+    }
 
         
   },
@@ -261,9 +271,9 @@ export default {
     this.getCity(),
     // this.whereCity(),
     this.getSeoul(),
-    this.getGunggi()
+    this.getGunggi(),
     // this.use(VueMoment)
-
+    this.checkVisit()
   },
 
 }
