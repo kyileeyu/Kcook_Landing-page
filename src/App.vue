@@ -254,26 +254,14 @@ export default {
             })
             ;
         },
-    checkVisit(){
-      axios.patch('https://prod.kcook-cake.com/app/openBeta/visit')
-      .then(res=>{
-      console.log(res);
-      })
-      .catch((error)=>{
-        console.log(error)
-      });
-
-    }
+ 
 
         
   },
   mounted(){
     this.getCity(),
-    // this.whereCity(),
     this.getSeoul(),
-    this.getGunggi(),
-    // this.use(VueMoment)
-    this.checkVisit()
+    this.getGunggi()
   },
 
 }
@@ -417,7 +405,16 @@ body {
 
 
 
+@media (min-width: 768px) {
+  /* 보이고 안보이고 지정 */
+  .kcook-coupon {
+    max-width: 600px;
+  }
+  .kcook-logo {
+    max-width: 400px;
+  }
 
+}
 
 
 .landing-page {
