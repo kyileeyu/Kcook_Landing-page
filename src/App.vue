@@ -109,7 +109,11 @@ import axios from 'axios';
 // import VueMoment from 'vue-moment';
 // Vue.use(vueMoment);
 
+// const cors = require("cors");
 
+// const app = express();
+
+// app.use(cors());
 // 디데이
 window.onload = function() {
   // const title = document.querySelector(".end-time");
@@ -173,12 +177,8 @@ const init = () => {
 
 // axios
       
-axios.patch('https://prod.kcook-cake.com/app/openBeta/visit')
-.then(res=>{
-console.log('조회'+res)})
-.catch((error)=>{
-  console.log(error)
-});
+axios.patch('https://prod.kcook-cake.com/app/openBeta/visit');
+
 
 
 export default {
