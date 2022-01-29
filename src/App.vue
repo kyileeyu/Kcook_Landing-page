@@ -128,23 +128,11 @@ const titleSec2 = document.querySelector(".end-time-seconds2");
 
 const getDDay = () => {
   // let setDate = new Date("2022-01-01T00:00:00+0900");
-  let setDate = new Date(2022, 1, 11, 0, 0, 0, 0);
+  let setDate = new Date(2022, 4, 6, 0, 0, 0, 0);
+  //월=월-1, 일=일+1
+  //5월 5일 출시 기준
   // 사파리 및 IE에서는 date 함수에 - 사용 불가, nan 오류 발생, 삽질끝에 date함수 형식 바꿔 해결
-  // console.log(setDate);
 
-  // 삽질1
-  // let setDate = this.moment().format('2013-02-08 2400.000');
-//  new Date(+new Date() + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, '');
-
-// 삽질2
-//  const date = new Date(+new Date('2022-01-01T00:00:00+0900') + 3240 * 10000).toISOString().split("T")[0]
-// const time = new Date().toTimeString().split(" ")[0];
-// console.log(date + ' ' + time);
-// const setDate = date + ' ' + time;
-
-// 삽질3
-// const Date = new Date(Date.UTC("January 01, 2022"));
-// console.log(Date);
 
   const now = new Date();
   const distance = setDate.getTime() - now.getTime();
@@ -177,7 +165,6 @@ const init = () => {
 
 // axios
       
-axios.patch('https://prod.kcook-cake.com/app/openBeta/visit');
 
 
 
@@ -233,6 +220,10 @@ export default {
         }
         );
     },
+    getVisiter(){
+      axios.patch('https://prod.kcook-cake.com/app/openBeta/visit');
+
+    },
     // whereCity() {
     //         let cityid = {
     //             cityid: this.cityid
@@ -261,7 +252,8 @@ export default {
   mounted(){
     this.getCity(),
     this.getSeoul(),
-    this.getGunggi()
+    this.getGunggi(),
+    this.getVisiter()
   },
 
 }
